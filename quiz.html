@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Career Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="nav">
+  <h2 class="logo">CareerPath</h2>
+  <div>
+    <a href="index.html">🏠 Home</a>
+    <a href="careers.html">💼 Careers</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="quiz.html">🧠 Quiz</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div>
+
+<h1>🧠 Career Quiz</h1>
+
+<form id="quizForm" onsubmit="return false;">
+
+<!-- Q1 -->
+<p><b>1. What do you enjoy most?</b></p>
+<label><input type="radio" name="q1" value="tech"> Coding</label><br>
+<label><input type="radio" name="q1" value="creative"> Designing</label><br>
+<label><input type="radio" name="q1" value="business"> Managing</label><br>
+<label><input type="radio" name="q1" value="health"> Helping People</label><br>
+
+<!-- Q2 -->
+<p><b>2. Your strongest skill?</b></p>
+<label><input type="radio" name="q2" value="tech"> Logic</label><br>
+<label><input type="radio" name="q2" value="creative"> Creativity</label><br>
+<label><input type="radio" name="q2" value="business"> Communication</label><br>
+<label><input type="radio" name="q2" value="health"> Care</label><br>
+
+<!-- Q3 -->
+<p><b>3. What type of work do you like?</b></p>
+<label><input type="radio" name="q3" value="tech"> Building apps</label><br>
+<label><input type="radio" name="q3" value="creative"> Designing UI</label><br>
+<label><input type="radio" name="q3" value="business"> Running campaigns</label><br>
+<label><input type="radio" name="q3" value="health"> Treating patients</label><br>
+
+<br>
+
+<button type="button" onclick="calculate()">Get Result</button>
+
+</form>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate() {
+
+  // Get answers safely
+  let q1 = document.querySelector('input[name="q1"]:checked');
+  let q2 = document.querySelector('input[name="q2"]:checked');
+  let q3 = document.querySelector('input[name="q3"]:checked');
+
+  // Validation
+  if(!q1 || !q2 || !q3){
+    alert("Please answer all questions!");
+    return;
+  }
+
+  let score = {
+    tech: 0,
+    creative: 0,
+    business: 0,
+    health: 0
+  };
+
+  score[q1.value]++;
+  score[q2.value]++;
+  score[q3.value]++;
+
+  let max = "";
+  let highest = 0;
+
+  for(let key in score){
+    if(score[key] > highest){
+      highest = score[key];
+      max = key;
+    }
+  }
+
+  let resultText = "";
+
+  if(max === "tech") 
+    resultText = "💻 Web Dev / AI / Data Science";
+  else if(max === "creative") 
+    resultText = "🎨 UI/UX / Game Dev";
+  else if(max === "business") 
+    resultText = "📈 Marketing";
+  else 
+    resultText = "🏥 Doctor";
+
+  document.getElementById("result").innerText = resultText;
+
+  // Save for dashboard
+  localStorage.setItem("career", resultText);
+}
+</script>
+
+</body>
+</html>

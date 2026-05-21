@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="nav">
+  <h2 class="logo">CareerPath</h2>
+  <div>
+    <a href="index.html">🏠 Home</a>
+    <a href="careers.html">💼 Careers</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="quiz.html">🧠 Quiz</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div class="section">
+
+  <h1>📊 Dashboard</h1>
+
+  <!-- Recommended Career Card -->
+  <div class="card center">
+
+    <h2>🎯 Recommended Career</h2>
+    
+    <p id="careerText">No result yet</p>
+
+    <a href="careers.html" class="btn">Explore Careers</a>
+
+  </div>
+
+  <!-- Progress Section -->
+  <div class="card">
+
+    <h2>📈 Your Progress</h2>
+
+    <p>Web Development</p>
+    <div class="progress-bar">
+      <div class="progress" style="width:70%"></div>
+    </div>
+
+    <p>DSA</p>
+    <div class="progress-bar">
+      <div class="progress" style="width:50%"></div>
+    </div>
+
+    <p>Projects</p>
+    <div class="progress-bar">
+      <div class="progress" style="width:30%"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Script -->
+<script>
+
+// Get saved career from quiz
+let career = localStorage.getItem("career");
+
+if(career){
+  document.getElementById("careerText").innerText = career;
+} else {
+  document.getElementById("careerText").innerText = "Take the quiz to get recommendation";
+}
+
+</script>
+
+</body>
+</html>
